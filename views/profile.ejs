@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #92A9B6;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            color: #4A4A4A;
+        }
+        img {
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 18px;
+        }
+        .btn {
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background-color: #357ABD;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profile Page</h1>
+        <h1>Welcome <%= user.name %></h1>
+        <p>Email: <%= user.email %></p>
+        
+        <% if (user.photo) { %>
+            <img src="<%= user.photo %>" alt="Profile Photo" style="width:200px;height:200px;">
+        <% } else { %>
+            <p>No photo uploaded.</p>
+        <% } %>
+
+        <form action="/upload_photo" method="POST" enctype="multipart/form-data">
+            <input type="file" name="photo" required>
+            <button type="submit" class="btn">Upload Photo</button>
+        </form>
+        
+        <a href="/logout" class="btn">Logout</a>
+        <a href="/index.html" class="btn">Go to Home</a>
+    </div>
+</body>
+</html>
